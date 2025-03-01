@@ -1,6 +1,7 @@
 import React from 'react';
 import { Github, ExternalLink } from 'lucide-react';
 import { Project } from './projectsData';
+import SkillTag from '../skills/SkillTag';
 
 const ProjectCard: React.FC<Project> = ({ 
   title, 
@@ -35,12 +36,10 @@ const ProjectCard: React.FC<Project> = ({
       <p className="text-gray-600 mb-4">{description}</p>
       <div className="flex flex-wrap gap-2 mb-4">
         {technologies.map((tech, i) => (
-          <span
+          <SkillTag
             key={i}
-            className="inline-block bg-blue-100 text-blue-600 px-2 py-1 rounded text-sm"
-          >
-            {tech}
-          </span>
+            name={tech}
+          />
         ))}
       </div>
       {requestAccess && (
