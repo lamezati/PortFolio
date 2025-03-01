@@ -12,13 +12,7 @@ const Hero = () => {
     <section id="home" className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-blue-50 pt-16">
       <div className="container mx-auto px-4 py-16">
         <div className="max-w-3xl mx-auto text-center">
-          <div className="md:hidden mb-8">
-            <img
-              src="/profile.jpg"
-              alt="Leonel Mezatio"
-              className="w-40 h-40 rounded-full mx-auto object-cover border-4 border-white shadow-lg"
-            />
-          </div>
+          {/* Remove profile image since it's not in your public folder */}
           <h1 className="text-4xl md:text-6xl font-bold mb-6">
             Hi, I'm Leonel Mezatio
           </h1>
