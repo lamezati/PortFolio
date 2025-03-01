@@ -3,7 +3,10 @@ import { FileText } from 'lucide-react';
 
 const Hero = () => {
   const openResume = () => {
-    window.open('https://raw.githubusercontent.com/lamezati/PortFolio/main/public/resume.pdf', '_blank');
+    // Using Google Docs viewer to display the PDF in a browser tab
+    const resumeUrl = 'https://raw.githubusercontent.com/lamezati/PortFolio/main/public/resume.pdf';
+    const viewerUrl = `https://docs.google.com/viewer?url=${encodeURIComponent(resumeUrl)}&embedded=true`;
+    window.open(viewerUrl, '_blank');
   };
 
   return (
