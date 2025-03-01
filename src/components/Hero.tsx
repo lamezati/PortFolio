@@ -3,10 +3,10 @@ import { FileText } from 'lucide-react';
 
 const Hero = () => {
   const openResume = () => {
-    // Using Mozilla's PDF.js viewer with the raw GitHub URL
-    const pdfUrl = 'https://raw.githubusercontent.com/lamezati/PortFolio/main/public/resume.pdf';
-    const viewerUrl = `https://mozilla.github.io/pdf.js/web/viewer.html?file=${encodeURIComponent(pdfUrl)}`;
-    window.open(viewerUrl, '_blank');
+    // Using Google Drive viewer approach
+    // Note: Replace this with your actual Google Drive share link
+    const googleDriveLink = 'https://drive.google.com/file/d/1HN7CvM1Yb-_IabDugdGsI3Ft90cEz9d7/view?usp=sharing';
+    window.open(googleDriveLink, '_blank');
   };
 
   return (
