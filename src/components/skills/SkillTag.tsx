@@ -8,36 +8,29 @@ interface SkillTagProps {
 
 const SkillTag: React.FC<SkillTagProps> = ({ name, className = "" }) => {
   const [showTooltip, setShowTooltip] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-  const [tooltipPosition, setTooltipPosition] = useState<'top' | 'bottom'>('top');
+  const [tooltipPosition, setTooltipPosition] = useState<'top' | 'bottom' | 'center'>('center');
   const tagRef = useRef<HTMLDivElement>(null);
   const skill = getSkillByName(name);
   
-  // Check if we're on mobile and set position accordingly
+  // Handle click for mobile devices
+  const handleClick = (e: React.MouseEvent) => {
+    e.stopPropagation(); // Prevent propagation
+    setShowTooltip(!showTooltip);
+  };
+  
+  // Close tooltip when clicking outside
   useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
+    const handleOutsideClick = () => {
+      if (showTooltip) {
+        setShowTooltip(false);
+      }
     };
     
-    // Check on initial render
-    checkMobile();
-    
-    // Check on window resize
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
-  
-  // Determine if tooltip should appear above or below based on position in viewport
-  useEffect(() => {
-    if (tagRef.current && showTooltip) {
-      const rect = tagRef.current.getBoundingClientRect();
-      const spaceAbove = rect.top;
-      const spaceBelow = window.innerHeight - rect.bottom;
-      
-      // If there's more space below or on mobile, show tooltip below
-      setTooltipPosition(spaceBelow > spaceAbove || isMobile ? 'bottom' : 'top');
-    }
-  }, [showTooltip, isMobile]);
+    document.addEventListener('click', handleOutsideClick);
+    return () => {
+      document.removeEventListener('click', handleOutsideClick);
+    };
+  }, [showTooltip]);
   
   return (
     <div className="relative inline-block" ref={tagRef}>
@@ -45,23 +38,23 @@ const SkillTag: React.FC<SkillTagProps> = ({ name, className = "" }) => {
         className={`px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-sm hover:bg-blue-100 cursor-help transition-colors ${className}`}
         onMouseEnter={() => setShowTooltip(true)}
         onMouseLeave={() => setShowTooltip(false)}
-        onClick={() => setShowTooltip(!showTooltip)} // Toggle on click for mobile
+        onClick={handleClick}
       >
         {name}
       </span>
       
       {showTooltip && skill && (
         <div 
-          className={`absolute z-10 w-64 px-3 py-2 text-sm bg-gray-800 text-white rounded shadow-lg 
-            ${tooltipPosition === 'top' 
-              ? 'bottom-full left-1/2 transform -translate-x-1/2 mb-2' 
-              : 'top-full left-1/2 transform -translate-x-1/2 mt-2'}`}
+          className="fixed inset-x-0 bottom-0 z-50 p-4 bg-gray-800 text-white text-sm rounded-t-lg shadow-lg mx-auto"
+          style={{ 
+            maxWidth: '100%',
+            animation: 'slideUp 0.2s ease-out'
+          }}
         >
-          {skill.description}
-          <div 
-            className={`absolute w-2 h-2 bg-gray-800 transform rotate-45 left-1/2 -translate-x-1/2
-              ${tooltipPosition === 'top' ? 'bottom-[-4px]' : 'top-[-4px]'}`}
-          ></div>
+          <div className="max-w-md mx-auto">
+            <strong className="block mb-1">{name}</strong>
+            {skill.description}
+          </div>
         </div>
       )}
     </div>
