@@ -1,37 +1,39 @@
 import React from 'react';
-import { Code2, Database, Shield, Code, Layers, Wrench, Palette } from 'lucide-react';
+import { Code2, Database, Layers, Wrench, Palette } from 'lucide-react';
+import SkillTag from './skills/SkillTag';
+import { getSkillsByCategory } from './skills/skillsData';
 
 const Skills = () => {
   const skillCategories = [
     {
       title: "Programming Languages",
       icon: <Code2 className="w-6 h-6" />,
-      skills: ["TypeScript", "Python", "Java"]
+      skills: getSkillsByCategory("language"),
+      key: "language"
     },
     {
       title: "Frontend",
       icon: <Palette className="w-6 h-6" />,
-      skills: ["React", "Tailwind CSS", "EmailJS", "Lucide React"]
+      skills: getSkillsByCategory("frontend"),
+      key: "frontend"
     },
     {
       title: "Build Tools",
       icon: <Wrench className="w-6 h-6" />,
-      skills: ["Vite", "ESLint", "PostCSS"]
+      skills: getSkillsByCategory("build"),
+      key: "build"
     },
     {
       title: "Databases",
       icon: <Database className="w-6 h-6" />,
-      skills: ["SQL", "Firebase"]
+      skills: getSkillsByCategory("database"),
+      key: "database"
     },
     {
       title: "DevOps & Tools",
       icon: <Layers className="w-6 h-6" />,
-      skills: ["Git", "GitHub Actions", "Docker", "Jenkins"]
-    },
-    {
-      title: "Security",
-      icon: <Shield className="w-6 h-6" />,
-      skills: ["OWASP", "Penetration Testing", "Cybersecurity"]
+      skills: getSkillsByCategory("devops"),
+      key: "devops"
     }
   ];
 
@@ -48,12 +50,10 @@ const Skills = () => {
               </div>
               <div className="flex flex-wrap gap-2">
                 {category.skills.map((skill, i) => (
-                  <span
+                  <SkillTag
                     key={i}
-                    className="px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-sm"
-                  >
-                    {skill}
-                  </span>
+                    name={skill.name}
+                  />
                 ))}
               </div>
             </div>
