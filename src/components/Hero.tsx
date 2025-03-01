@@ -3,7 +3,7 @@ import { FileText } from 'lucide-react';
 
 const Hero = () => {
   const openResume = () => {
-    window.open('/resume.pdf', '_blank');
+    window.open('https://raw.githubusercontent.com/lamezati/PortFolio/main/public/resume.pdf', '_blank');
   };
 
   return (
