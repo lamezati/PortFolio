@@ -1,5 +1,5 @@
 import React from 'react';
-import { Code2, Database, Shield, Code, Layers, Tool, Palette } from 'lucide-react';
+import { Code2, Database, Shield, Code, Layers, Wrench, Palette } from 'lucide-react';
 
 const Skills = () => {
   const skillCategories = [
@@ -15,7 +15,7 @@ const Skills = () => {
     },
     {
       title: "Build Tools",
-      icon: <Tool className="w-6 h-6" />,
+      icon: <Wrench className="w-6 h-6" />,
       skills: ["Vite", "ESLint", "PostCSS"]
     },
     {
