@@ -4,7 +4,7 @@ export const experiences = [
     company: "NC State",
     period: "Aug 18, 2024 - Present",
     location: "Raleigh",
-    logoUrl: "/ncstate-logo.png",
+    logoUrl: "https://raw.githubusercontent.com/lamezati/PortFolio/main/public/ncstate-logo.png",
     description: [
       "Managing and resolving technical issues using the Service Now Ticketing system, including support for classroom, labs, and conference rooms",
       "Conducting initial assessments of technical problems using checklists and knowledge base, escalating non-simple issues to specialized teams"
@@ -15,7 +15,7 @@ export const experiences = [
     company: "Outlier",
     period: "November 2024 - Present",
     location: "Remote",
-    logoUrl: "/outlier-logo.png",
+    logoUrl: "https://raw.githubusercontent.com/lamezati/PortFolio/main/public/outlier-logo.png",
     description: [
       "Collaborated with Outlier.ai to enhance generative artificial intelligence (AI) models by providing expert feedback and coding abilities",
       "Communicated technical concepts clearly and effectively in English, ensuring high-quality outcomes in training AI models"
