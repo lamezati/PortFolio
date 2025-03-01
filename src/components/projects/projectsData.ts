@@ -10,9 +10,9 @@ export interface Project {
 export const personalProjects: Project[] = [
   {
     title: "Portfolio Website",
-    description: "A professional portfolio showcasing my academic and professional achievements with a focus on cybersecurity.",
-    technologies: ["React", "TypeScript", "Tailwind CSS"],
-    githubUrl: "https://github.com/lamezati"
+    description: "A professional portfolio showcasing my academic and professional achievements.",
+    technologies: ["React", "TypeScript", "Tailwind CSS", "Vite", "EmailJS", "ESLint", "PostCSS"],
+    githubUrl: "https://github.com/lamezati/PortFolio"
   }
 ];
 
