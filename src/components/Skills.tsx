@@ -1,22 +1,37 @@
 import React from 'react';
-import { Code2, Database, Shield } from 'lucide-react';
+import { Code2, Database, Shield, Code, Layers, Tool, Palette } from 'lucide-react';
 
 const Skills = () => {
   const skillCategories = [
     {
       title: "Programming Languages",
       icon: <Code2 className="w-6 h-6" />,
-      skills: ["JUNIT", "Python", "Java"]
+      skills: ["TypeScript", "Python", "Java"]
     },
     {
-      title: "Tools & Frameworks",
-      icon: <Shield className="w-6 h-6" />,
-      skills: ["Git", "Docker", "Jenkins"]
+      title: "Frontend",
+      icon: <Palette className="w-6 h-6" />,
+      skills: ["React", "Tailwind CSS", "EmailJS", "Lucide React"]
+    },
+    {
+      title: "Build Tools",
+      icon: <Tool className="w-6 h-6" />,
+      skills: ["Vite", "ESLint", "PostCSS"]
     },
     {
       title: "Databases",
       icon: <Database className="w-6 h-6" />,
       skills: ["SQL", "Firebase"]
+    },
+    {
+      title: "DevOps & Tools",
+      icon: <Layers className="w-6 h-6" />,
+      skills: ["Git", "GitHub Actions", "Docker", "Jenkins"]
+    },
+    {
+      title: "Security",
+      icon: <Shield className="w-6 h-6" />,
+      skills: ["OWASP", "Penetration Testing", "Cybersecurity"]
     }
   ];
 
@@ -24,7 +39,7 @@ const Skills = () => {
     <section id="skills" className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl font-bold text-center mb-12">Skills & Technologies</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {skillCategories.map((category, index) => (
             <div key={index} className="bg-white p-6 rounded-lg shadow-md">
               <div className="flex items-center gap-3 mb-4">
