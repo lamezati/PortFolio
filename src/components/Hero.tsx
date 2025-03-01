@@ -3,8 +3,10 @@ import { FileText } from 'lucide-react';
 
 const Hero = () => {
   const openResume = () => {
-    // Use a direct link that will display the PDF in the browser
-    window.open('https://lamezati.github.io/resume.pdf', '_blank');
+    // Using Mozilla's PDF.js viewer with the raw GitHub URL
+    const pdfUrl = 'https://raw.githubusercontent.com/lamezati/PortFolio/main/public/resume.pdf';
+    const viewerUrl = `https://mozilla.github.io/pdf.js/web/viewer.html?file=${encodeURIComponent(pdfUrl)}`;
+    window.open(viewerUrl, '_blank');
   };
 
   return (
