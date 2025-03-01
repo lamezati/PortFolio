@@ -8,7 +8,7 @@ export const skillsData: Skill[] = [
   // Programming Languages
   {
     name: "TypeScript",
-    description: "Used for type-safe JavaScript development, enhancing code quality and developer experience",
+    description: "Used in my portfolio for type safety to prevent runtime errors and improve code maintainability",
     category: "language"
   },
   {
@@ -25,39 +25,39 @@ export const skillsData: Skill[] = [
   // Frontend
   {
     name: "React",
-    description: "Primary framework for building interactive user interfaces with reusable components",
+    description: "Core framework for my portfolio, enabling component-based UI with efficient DOM updates",
     category: "frontend"
   },
   {
     name: "Tailwind CSS",
-    description: "Utility-first CSS framework for rapidly building custom designs without leaving HTML",
+    description: "Used in my portfolio for rapid styling without writing custom CSS, ensuring responsive design",
     category: "frontend"
   },
   {
     name: "EmailJS",
-    description: "Used to send emails directly from client-side JavaScript without needing a server",
+    description: "Implemented in my portfolio's contact form to send emails directly from frontend without a server",
     category: "frontend"
   },
   {
     name: "Lucide React",
-    description: "Beautiful icon set implemented as React components for consistent UI elements",
+    description: "Used for consistent, lightweight SVG icons throughout my portfolio's UI",
     category: "frontend"
   },
   
   // Build Tools
   {
     name: "Vite",
-    description: "Next-generation frontend build tool that significantly improves development experience",
+    description: "Powers my portfolio with lightning-fast hot module replacement and optimized production builds",
     category: "build"
   },
   {
     name: "ESLint",
-    description: "Static code analysis tool for identifying problematic patterns in JavaScript code",
+    description: "Enforces code quality and consistency standards in my portfolio codebase",
     category: "build"
   },
   {
     name: "PostCSS",
-    description: "Tool for transforming CSS with JavaScript plugins like Autoprefixer",
+    description: "Processes Tailwind and adds vendor prefixes to CSS in my portfolio for cross-browser compatibility",
     category: "build"
   },
   
