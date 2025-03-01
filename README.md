@@ -1,6 +1,6 @@
 # Leonel Mezatio Portfolio
 
-My personal portfolio website built with React, TypeScript, and Tailwind CSS.
+A professional portfolio showcasing my academic and professional achievements with a focus on cybersecurity.
 
 ## Live Site
 
@@ -8,11 +8,14 @@ Visit my portfolio at: [https://lamezati.github.io/PortFolio/](https://lamezati.
 
 ## Technologies Used
 
-- React
+- React 18
 - TypeScript
 - Tailwind CSS
 - Vite
 - EmailJS for contact form
+- Lucide React for icons
+- React Hot Toast for notifications
+- ESLint for code quality
 
 ## Development
 
