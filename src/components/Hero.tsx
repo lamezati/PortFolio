@@ -3,9 +3,8 @@ import { FileText } from 'lucide-react';
 
 const Hero = () => {
   const openResume = () => {
-    // Using Google Drive viewer approach
-    // Note: Replace this with your actual Google Drive share link
-    const googleDriveLink = 'https://drive.google.com/file/d/1HN7CvM1Yb-_IabDugdGsI3Ft90cEz9d7/view?usp=sharing';
+    // Using your actual Google Drive share link
+    const googleDriveLink = 'https://drive.google.com/file/d/1cxXezKjRAqjIO0Sa4n6YwYbbvRAFgefq/view?usp=sharing';
     window.open(googleDriveLink, '_blank');
   };
 
