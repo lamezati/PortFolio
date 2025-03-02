@@ -1,19 +1,20 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { getSkillByName } from './skillsData';
-import { useTooltip } from './TooltipContext';
 
 interface SkillTagProps {
   name: string;
   className?: string;
 }
 
+// Create a single static tooltip element for all skills to share on mobile
+let mobileTooltipElement: HTMLDivElement | null = null;
+let activeSkillName: string | null = null;
+
 const SkillTag: React.FC<SkillTagProps> = ({ name, className = "" }) => {
   const [showDesktopTooltip, setShowDesktopTooltip] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const { setActiveSkill } = useTooltip();
   const skill = getSkillByName(name);
   
-  // Check if we're on mobile
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
@@ -21,16 +22,64 @@ const SkillTag: React.FC<SkillTagProps> = ({ name, className = "" }) => {
     
     checkMobile();
     window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
+    
+    // Create the tooltip element once on component mount if it doesn't exist
+    if (!mobileTooltipElement) {
+      mobileTooltipElement = document.createElement('div');
+      mobileTooltipElement.className = 'fixed inset-x-0 bottom-0 z-30 p-4 bg-gray-800 text-white text-sm rounded-t-lg shadow-lg mx-auto';
+      mobileTooltipElement.style.display = 'none';
+      mobileTooltipElement.style.animation = 'slideUp 0.2s ease-out';
+      
+      // Create the backdrop
+      const backdrop = document.createElement('div');
+      backdrop.className = 'fixed inset-0 z-20 bg-black bg-opacity-10';
+      backdrop.style.display = 'none';
+      backdrop.id = 'skill-tooltip-backdrop';
+      
+      // Handle backdrop click to close the tooltip
+      backdrop.addEventListener('click', () => {
+        backdrop.style.display = 'none';
+        mobileTooltipElement!.style.display = 'none';
+        activeSkillName = null;
+      });
+      
+      document.body.appendChild(backdrop);
+      document.body.appendChild(mobileTooltipElement);
+    }
+    
+    return () => {
+      window.removeEventListener('resize', checkMobile);
+    };
   }, []);
   
-  // Separate mobile and desktop click handlers for clarity
-  const handleMobileClick = (e: React.MouseEvent) => {
+  const showMobileTooltip = (e: React.MouseEvent) => {
     e.stopPropagation();
     
-    if (skill) {
-      // Always set the active skill directly on mobile
-      setActiveSkill(skill);
+    if (!skill || !mobileTooltipElement) return;
+    
+    // Only proceed if this is a different skill or the tooltip is hidden
+    if (activeSkillName !== skill.name || mobileTooltipElement.style.display === 'none') {
+      // Update content
+      mobileTooltipElement.innerHTML = `
+        <div class="max-w-md mx-auto pb-2">
+          <strong class="block mb-2 text-lg">${skill.name}</strong>
+          <p>${skill.description}</p>
+        </div>
+      `;
+      
+      // Show the tooltip
+      mobileTooltipElement.style.display = 'block';
+      const backdrop = document.getElementById('skill-tooltip-backdrop');
+      if (backdrop) backdrop.style.display = 'block';
+      
+      // Set this as the active skill
+      activeSkillName = skill.name;
+    } else {
+      // If clicking the same skill that's already showing, hide the tooltip
+      mobileTooltipElement.style.display = 'none';
+      const backdrop = document.getElementById('skill-tooltip-backdrop');
+      if (backdrop) backdrop.style.display = 'none';
+      activeSkillName = null;
     }
   };
 
@@ -43,7 +92,7 @@ const SkillTag: React.FC<SkillTagProps> = ({ name, className = "" }) => {
     <div className="relative inline-block z-10">
       <span
         className={`px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-sm hover:bg-blue-100 cursor-help transition-colors ${className}`}
-        onClick={isMobile ? handleMobileClick : handleDesktopClick}
+        onClick={isMobile ? showMobileTooltip : handleDesktopClick}
         onMouseEnter={() => !isMobile && setShowDesktopTooltip(true)}
         onMouseLeave={() => !isMobile && setShowDesktopTooltip(false)}
       >
