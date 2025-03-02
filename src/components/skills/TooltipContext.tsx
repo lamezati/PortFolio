@@ -32,13 +32,13 @@ export const TooltipProvider: React.FC<TooltipProviderProps> = ({ children }) =>
         <>
           {/* Invisible overlay that covers the entire screen */}
           <div 
-            className="fixed inset-0 z-40 bg-transparent"
+            className="fixed inset-0 z-20 bg-transparent"
             onClick={handleBackgroundClick}
             style={{ pointerEvents: 'auto' }}
           />
           {/* Tooltip content */}
           <div 
-            className="fixed inset-x-0 bottom-0 z-50 p-4 bg-gray-800 text-white text-sm rounded-t-lg shadow-lg mx-auto"
+            className="fixed inset-x-0 bottom-0 z-30 p-4 bg-gray-800 text-white text-sm rounded-t-lg shadow-lg mx-auto"
             style={{ 
               maxWidth: '100%',
               animation: 'slideUp 0.2s ease-out'
