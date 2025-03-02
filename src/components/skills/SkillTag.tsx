@@ -10,8 +10,7 @@ interface SkillTagProps {
 const SkillTag: React.FC<SkillTagProps> = ({ name, className = "" }) => {
   const [showDesktopTooltip, setShowDesktopTooltip] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const { setActiveSkill, activeSkill } = useTooltip();
-  const skillRef = useRef<HTMLDivElement>(null);
+  const { setActiveSkill } = useTooltip();
   const skill = getSkillByName(name);
   
   // Check if we're on mobile
@@ -25,26 +24,26 @@ const SkillTag: React.FC<SkillTagProps> = ({ name, className = "" }) => {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
   
-  // Handle skill interaction
-  const handleClick = (e: React.MouseEvent) => {
-    e.preventDefault();
+  // Separate mobile and desktop click handlers for clarity
+  const handleMobileClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     
-    if (isMobile && skill) {
-      // Use direct function call to swap skills without delay
-      // This ensures immediate switching between skills
-      setActiveSkill(currSkill => currSkill?.name === skill.name ? null : skill);
-    } else {
-      // On desktop, toggle the local tooltip
-      setShowDesktopTooltip(!showDesktopTooltip);
+    if (skill) {
+      // Always set the active skill directly on mobile
+      setActiveSkill(skill);
     }
+  };
+
+  const handleDesktopClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setShowDesktopTooltip(!showDesktopTooltip);
   };
   
   return (
-    <div className="relative inline-block z-10" ref={skillRef}>
+    <div className="relative inline-block z-10">
       <span
         className={`px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-sm hover:bg-blue-100 cursor-help transition-colors ${className}`}
-        onClick={handleClick}
+        onClick={isMobile ? handleMobileClick : handleDesktopClick}
         onMouseEnter={() => !isMobile && setShowDesktopTooltip(true)}
         onMouseLeave={() => !isMobile && setShowDesktopTooltip(false)}
       >
