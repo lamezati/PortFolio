@@ -31,9 +31,9 @@ const SkillTag: React.FC<SkillTagProps> = ({ name, className = "" }) => {
     e.stopPropagation();
     
     if (isMobile && skill) {
-      // Always set the active skill on mobile
-      // This works for both opening new skills and switching between skills
-      setActiveSkill(skill);
+      // Use direct function call to swap skills without delay
+      // This ensures immediate switching between skills
+      setActiveSkill(currSkill => currSkill?.name === skill.name ? null : skill);
     } else {
       // On desktop, toggle the local tooltip
       setShowDesktopTooltip(!showDesktopTooltip);
