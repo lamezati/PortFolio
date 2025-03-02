@@ -2,7 +2,7 @@ import React from 'react';
 import { Code2, Database, Layers, Wrench, Palette } from 'lucide-react';
 import SkillTag from './skills/SkillTag';
 import { getSkillsByCategory } from './skills/skillsData';
-import { TooltipProvider } from './skills/TooltipContext';
+import TooltipProvider from './skills/TooltipContext';
 
 const Skills = () => {
   const skillCategories = [
