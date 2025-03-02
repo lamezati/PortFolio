@@ -34,6 +34,7 @@ export const TooltipProvider: React.FC<TooltipProviderProps> = ({ children }) =>
           <div 
             className="fixed inset-0 z-40 bg-transparent"
             onClick={handleBackgroundClick}
+            style={{ pointerEvents: 'auto' }}
           />
           {/* Tooltip content */}
           <div 
