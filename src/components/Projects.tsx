@@ -1,7 +1,7 @@
 import React from 'react';
 import ProjectSection from './projects/ProjectSection';
 import { personalProjects, academicProjects } from './projects/projectsData';
-import { TooltipProvider } from './skills/TooltipContext';
+import TooltipProvider from './skills/TooltipContext';
 
 const Projects = () => {
   const academicMessage = "Due to university academic integrity policies, access to school project repositories requires verification. Please use the contact form to request temporary access.";
