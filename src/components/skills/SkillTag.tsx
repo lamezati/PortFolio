@@ -25,29 +25,52 @@ const SkillTag: React.FC<SkillTagProps> = ({ name, className = "" }) => {
   
   // Handle clicks outside the component to close the tooltip
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
+    const handleClickOutside = (event: MouseEvent | TouchEvent) => {
+      // For mobile, we only want to close when tapping elsewhere, not immediately
       if (skillRef.current && !skillRef.current.contains(event.target as Node)) {
+        // Small delay to prevent immediate closing on mobile
+        if (isMobile) {
+          // Don't close if this is the initial touch that opened the tooltip
+          const touch = event as TouchEvent;
+          if (touch.timeStamp && touch.timeStamp < 100) return;
+        }
         setShowTooltip(false);
       }
     };
 
     // Add event listener if tooltip is open
     if (showTooltip) {
+      // For mobile, use touchend instead of touchstart to avoid immediate closing
       document.addEventListener('mousedown', handleClickOutside);
-      document.addEventListener('touchstart', handleClickOutside);
+      document.addEventListener('touchend', handleClickOutside, { passive: true });
     }
 
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
-      document.removeEventListener('touchstart', handleClickOutside);
+      document.removeEventListener('touchend', handleClickOutside);
     };
-  }, [showTooltip]);
+  }, [showTooltip, isMobile]);
 
   // Toggle tooltip on click/touch for both mobile and desktop
   const handleInteraction = (e: React.MouseEvent | React.TouchEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    setShowTooltip(!showTooltip);
+    
+    // For mobile, make sure we don't close immediately
+    if (isMobile) {
+      // If tooltip is already shown, only close on explicit tap of the same skill
+      // This prevents accidental closing
+      setShowTooltip(!showTooltip);
+      
+      // Stop the event from further propagation
+      if (e.nativeEvent) {
+        e.nativeEvent.stopImmediatePropagation?.();
+        e.nativeEvent.stopPropagation?.();
+      }
+    } else {
+      // Desktop behavior remains the same
+      setShowTooltip(!showTooltip);
+    }
   };
   
   return (
@@ -70,8 +93,15 @@ const SkillTag: React.FC<SkillTagProps> = ({ name, className = "" }) => {
             maxWidth: '100%',
             animation: 'slideUp 0.2s ease-out'
           }}
+          onClick={(e) => e.stopPropagation()}
         >
-          <div className="max-w-md mx-auto">
+          <div className="max-w-md mx-auto relative pb-6">
+            <button 
+              className="absolute top-0 right-0 text-white w-6 h-6 flex items-center justify-center"
+              onClick={() => setShowTooltip(false)}
+            >
+              ×
+            </button>
             <strong className="block mb-1">{name}</strong>
             {skill.description}
           </div>
