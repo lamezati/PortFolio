@@ -3,7 +3,7 @@ import { Skill } from './skillsData';
 
 interface TooltipContextType {
   activeSkill: Skill | null;
-  setActiveSkill: (skill: Skill | null) => void;
+  setActiveSkill: (skill: Skill | null | ((prev: Skill | null) => Skill | null)) => void;
 }
 
 const TooltipContext = createContext<TooltipContextType>({
@@ -21,8 +21,11 @@ export const TooltipProvider: React.FC<TooltipProviderProps> = ({ children }) =>
   const [activeSkill, setActiveSkill] = useState<Skill | null>(null);
 
   // Close tooltip when clicking anywhere
-  const handleBackgroundClick = () => {
-    setActiveSkill(null);
+  const handleBackgroundClick = (e: React.MouseEvent) => {
+    // Only close if clicking the direct overlay (not child elements)
+    if (e.target === e.currentTarget) {
+      setActiveSkill(null);
+    }
   };
 
   return (
@@ -35,6 +38,7 @@ export const TooltipProvider: React.FC<TooltipProviderProps> = ({ children }) =>
             className="fixed inset-0 z-20 bg-transparent"
             onClick={handleBackgroundClick}
             style={{ pointerEvents: 'auto' }}
+            data-overlay="true"
           />
           {/* Tooltip content */}
           <div 
