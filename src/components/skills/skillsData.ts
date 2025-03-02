@@ -38,26 +38,11 @@ export const skillsData: Skill[] = [
     description: "Used to send emails directly from client-side JavaScript without needing a server",
     category: "frontend"
   },
-  {
-    name: "Lucide React",
-    description: "Beautiful icon set implemented as React components for consistent UI elements",
-    category: "frontend"
-  },
   
   // Build Tools
   {
     name: "Vite",
     description: "Next-generation frontend build tool that significantly improves development experience",
-    category: "build"
-  },
-  {
-    name: "ESLint",
-    description: "Static code analysis tool for identifying problematic patterns in JavaScript code",
-    category: "build"
-  },
-  {
-    name: "PostCSS",
-    description: "Tool for transforming CSS with JavaScript plugins like Autoprefixer",
     category: "build"
   },
   {
@@ -82,16 +67,6 @@ export const skillsData: Skill[] = [
   {
     name: "Git",
     description: "Version control system for tracking changes and collaborating on code",
-    category: "devops"
-  },
-  {
-    name: "GitHub Actions",
-    description: "CI/CD platform for automating build, test, and deployment workflows",
-    category: "devops"
-  },
-  {
-    name: "Docker",
-    description: "Platform for developing, shipping, and running applications in containers",
     category: "devops"
   },
   {
