@@ -20,30 +20,36 @@ interface TooltipProviderProps {
 export const TooltipProvider: React.FC<TooltipProviderProps> = ({ children }) => {
   const [activeSkill, setActiveSkill] = useState<Skill | null>(null);
 
+  // Close tooltip when clicking anywhere
+  const handleBackgroundClick = () => {
+    setActiveSkill(null);
+  };
+
   return (
     <TooltipContext.Provider value={{ activeSkill, setActiveSkill }}>
       {children}
       {activeSkill && (
-        <div 
-          className="fixed inset-x-0 bottom-0 z-50 p-4 bg-gray-800 text-white text-sm rounded-t-lg shadow-lg mx-auto"
-          style={{ 
-            maxWidth: '100%',
-            animation: 'slideUp 0.2s ease-out'
-          }}
-          onClick={(e) => e.stopPropagation()}
-        >
-          <div className="max-w-md mx-auto relative pb-2">
-            <button 
-              className="absolute top-0 right-0 text-white w-8 h-8 flex items-center justify-center text-xl font-bold"
-              onClick={() => setActiveSkill(null)}
-              aria-label="Close"
-            >
-              ×
-            </button>
-            <strong className="block mb-2 text-lg">{activeSkill.name}</strong>
-            <p>{activeSkill.description}</p>
+        <>
+          {/* Invisible overlay that covers the entire screen */}
+          <div 
+            className="fixed inset-0 z-40 bg-transparent"
+            onClick={handleBackgroundClick}
+          />
+          {/* Tooltip content */}
+          <div 
+            className="fixed inset-x-0 bottom-0 z-50 p-4 bg-gray-800 text-white text-sm rounded-t-lg shadow-lg mx-auto"
+            style={{ 
+              maxWidth: '100%',
+              animation: 'slideUp 0.2s ease-out'
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="max-w-md mx-auto pb-2">
+              <strong className="block mb-2 text-lg">{activeSkill.name}</strong>
+              <p>{activeSkill.description}</p>
+            </div>
           </div>
-        </div>
+        </>
       )}
     </TooltipContext.Provider>
   );
