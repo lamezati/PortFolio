@@ -1,9 +1,10 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 import { Skill } from './skillsData';
+import MobileTooltip from './MobileTooltip';
 
 interface TooltipContextType {
   activeSkill: Skill | null;
-  setActiveSkill: (skill: Skill | null | ((prev: Skill | null) => Skill | null)) => void;
+  setActiveSkill: (skill: Skill | null) => void;
 }
 
 const TooltipContext = createContext<TooltipContextType>({
@@ -20,42 +21,18 @@ interface TooltipProviderProps {
 export const TooltipProvider: React.FC<TooltipProviderProps> = ({ children }) => {
   const [activeSkill, setActiveSkill] = useState<Skill | null>(null);
 
-  // Close tooltip when clicking anywhere
-  const handleBackgroundClick = (e: React.MouseEvent) => {
-    // Only close if clicking the direct overlay (not child elements)
-    if (e.target === e.currentTarget) {
-      setActiveSkill(null);
-    }
+  const handleClose = () => {
+    setActiveSkill(null);
   };
 
   return (
     <TooltipContext.Provider value={{ activeSkill, setActiveSkill }}>
       {children}
       {activeSkill && (
-        <>
-          {/* Invisible overlay that covers the entire screen */}
-          <div 
-            className="fixed inset-0 z-20 bg-transparent"
-            onClick={handleBackgroundClick}
-            style={{ pointerEvents: 'auto' }}
-            data-overlay="true"
-          />
-          {/* Tooltip content */}
-          <div 
-            className="fixed inset-x-0 bottom-0 z-30 p-4 bg-gray-800 text-white text-sm rounded-t-lg shadow-lg mx-auto"
-            style={{ 
-              maxWidth: '100%',
-              animation: 'slideUp 0.2s ease-out'
-            }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="max-w-md mx-auto pb-2">
-              <strong className="block mb-2 text-lg">{activeSkill.name}</strong>
-              <p>{activeSkill.description}</p>
-            </div>
-          </div>
-        </>
+        <MobileTooltip skill={activeSkill} onClose={handleClose} />
       )}
     </TooltipContext.Provider>
   );
 };
+
+export default TooltipProvider;
