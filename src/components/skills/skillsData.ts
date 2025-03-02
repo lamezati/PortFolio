@@ -8,7 +8,7 @@ export const skillsData: Skill[] = [
   // Programming Languages
   {
     name: "TypeScript",
-    description: "Used in my portfolio for type safety to prevent runtime errors and improve code maintainability",
+    description: "Used for type-safe JavaScript development, enhancing code quality and developer experience",
     category: "language"
   },
   {
@@ -25,39 +25,44 @@ export const skillsData: Skill[] = [
   // Frontend
   {
     name: "React",
-    description: "Core framework for my portfolio, enabling component-based UI with efficient DOM updates",
+    description: "Primary framework for building interactive user interfaces with reusable components",
     category: "frontend"
   },
   {
     name: "Tailwind CSS",
-    description: "Used in my portfolio for rapid styling without writing custom CSS, ensuring responsive design",
+    description: "Utility-first CSS framework for rapidly building custom designs without leaving HTML",
     category: "frontend"
   },
   {
     name: "EmailJS",
-    description: "Implemented in my portfolio's contact form to send emails directly from frontend without a server",
+    description: "Used to send emails directly from client-side JavaScript without needing a server",
     category: "frontend"
   },
   {
     name: "Lucide React",
-    description: "Used for consistent, lightweight SVG icons throughout my portfolio's UI",
+    description: "Beautiful icon set implemented as React components for consistent UI elements",
     category: "frontend"
   },
   
   // Build Tools
   {
     name: "Vite",
-    description: "Powers my portfolio with lightning-fast hot module replacement and optimized production builds",
+    description: "Next-generation frontend build tool that significantly improves development experience",
     category: "build"
   },
   {
     name: "ESLint",
-    description: "Enforces code quality and consistency standards in my portfolio codebase",
+    description: "Static code analysis tool for identifying problematic patterns in JavaScript code",
     category: "build"
   },
   {
     name: "PostCSS",
-    description: "Processes Tailwind and adds vendor prefixes to CSS in my portfolio for cross-browser compatibility",
+    description: "Tool for transforming CSS with JavaScript plugins like Autoprefixer",
+    category: "build"
+  },
+  {
+    name: "Eclipse",
+    description: "Integrated development environment used primarily for Java development with extensive plugin support",
     category: "build"
   },
   
@@ -92,6 +97,11 @@ export const skillsData: Skill[] = [
   {
     name: "Jenkins",
     description: "Open-source automation server for building, testing, and deploying code",
+    category: "devops"
+  },
+  {
+    name: "JUnit",
+    description: "Testing framework for Java applications, supporting test-driven development and unit testing",
     category: "devops"
   }
 ];
