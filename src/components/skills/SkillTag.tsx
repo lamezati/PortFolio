@@ -10,7 +10,7 @@ interface SkillTagProps {
 const SkillTag: React.FC<SkillTagProps> = ({ name, className = "" }) => {
   const [showDesktopTooltip, setShowDesktopTooltip] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const { setActiveSkill } = useTooltip();
+  const { setActiveSkill, activeSkill } = useTooltip();
   const skillRef = useRef<HTMLDivElement>(null);
   const skill = getSkillByName(name);
   
@@ -31,7 +31,8 @@ const SkillTag: React.FC<SkillTagProps> = ({ name, className = "" }) => {
     e.stopPropagation();
     
     if (isMobile && skill) {
-      // On mobile, use the global tooltip
+      // Always set the active skill on mobile
+      // This works for both opening new skills and switching between skills
       setActiveSkill(skill);
     } else {
       // On desktop, toggle the local tooltip
@@ -40,7 +41,7 @@ const SkillTag: React.FC<SkillTagProps> = ({ name, className = "" }) => {
   };
   
   return (
-    <div className="relative inline-block" ref={skillRef}>
+    <div className="relative inline-block z-50" ref={skillRef}>
       <span
         className={`px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-sm hover:bg-blue-100 cursor-help transition-colors ${className}`}
         onClick={handleClick}
