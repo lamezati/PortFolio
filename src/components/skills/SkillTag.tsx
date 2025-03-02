@@ -41,7 +41,7 @@ const SkillTag: React.FC<SkillTagProps> = ({ name, className = "" }) => {
   };
   
   return (
-    <div className="relative inline-block z-50" ref={skillRef}>
+    <div className="relative inline-block z-10" ref={skillRef}>
       <span
         className={`px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-sm hover:bg-blue-100 cursor-help transition-colors ${className}`}
         onClick={handleClick}
