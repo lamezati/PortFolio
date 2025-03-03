@@ -3,24 +3,19 @@ import { FileText } from 'lucide-react';
 
 const Hero = () => {
   const openResume = () => {
-    // Using your actual Google Drive share link
-    const googleDriveLink = 'https://drive.google.com/file/d/1cxXezKjRAqjIO0Sa4n6YwYbbvRAFgefq/view?usp=sharing';
-    window.open(googleDriveLink, '_blank');
+    window.open('https://drive.google.com/file/d/1HC0tKqEOhk8EY4Xy5Vg0MJ8ac7sXuhCh/view?usp=sharing', '_blank');
   };
 
   return (
     <section id="home" className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-blue-50 pt-16">
       <div className="container mx-auto px-4 py-16">
         <div className="max-w-3xl mx-auto text-center">
-          {/* Profile picture - larger size on desktop with hover effect */}
-          <div className="mb-8 inline-block">
-            <div className="relative overflow-hidden rounded-full mx-auto border-4 border-white shadow-lg hover:shadow-xl transition-all duration-300">
-              <img
-                src="https://raw.githubusercontent.com/lamezati/PortFolio/main/public/profile_picture.jpg"
-                alt="Leonel Mezatio"
-                className="w-32 h-32 md:w-48 md:h-48 lg:w-56 lg:h-56 object-cover transform transition-transform duration-500 md:hover:scale-110"
-              />
-            </div>
+          <div className="md:hidden mb-8">
+            <img
+              src="/profile.jpg"
+              alt="Leonel Mezatio"
+              className="w-40 h-40 rounded-full mx-auto object-cover border-4 border-white shadow-lg"
+            />
           </div>
           <h1 className="text-4xl md:text-6xl font-bold mb-6">
             Hi, I'm Leonel Mezatio
