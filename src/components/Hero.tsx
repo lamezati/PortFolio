@@ -12,7 +12,7 @@ const Hero = () => {
         <div className="max-w-3xl mx-auto text-center">
           <div className="md:hidden mb-8">
             <img
-              src="/profile_picture.jpg"
+              src="https://raw.githubusercontent.com/lamezati/PortFolio/main/public/profile_picture.jpg"
               alt="Leonel Mezatio"
               className="w-40 h-40 rounded-full mx-auto object-cover border-4 border-white shadow-lg"
             />
