@@ -11,7 +11,7 @@ export const personalProjects: Project[] = [
   {
     title: "Portfolio Website",
     description: "A professional portfolio showcasing my academic and professional achievements.",
-    technologies: ["React", "TypeScript", "Tailwind CSS", "Vite", "EmailJS", "ESLint", "PostCSS"],
+    technologies: ["React", "TypeScript", "Tailwind CSS", "Vite", "EmailJS"],
     githubUrl: "https://github.com/lamezati/PortFolio"
   }
 ];
