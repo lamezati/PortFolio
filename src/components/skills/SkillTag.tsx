@@ -57,30 +57,22 @@ const SkillTag: React.FC<SkillTagProps> = ({ name, className = "" }) => {
     
     if (!skill || !mobileTooltipElement) return;
     
-    // Only proceed if this is a different skill or the tooltip is hidden
-    if (activeSkillName !== skill.name || mobileTooltipElement.style.display === 'none') {
-      // Update content
-      mobileTooltipElement.innerHTML = `
-        <div class="max-w-md mx-auto pb-2">
-          <strong class="block mb-2 text-lg">${skill.name}</strong>
-          <p>${skill.description}</p>
-        </div>
-      `;
-      
-      // Show the tooltip
-      mobileTooltipElement.style.display = 'block';
-      const backdrop = document.getElementById('skill-tooltip-backdrop');
-      if (backdrop) backdrop.style.display = 'block';
-      
-      // Set this as the active skill
-      activeSkillName = skill.name;
-    } else {
-      // If clicking the same skill that's already showing, hide the tooltip
-      mobileTooltipElement.style.display = 'none';
-      const backdrop = document.getElementById('skill-tooltip-backdrop');
-      if (backdrop) backdrop.style.display = 'none';
-      activeSkillName = null;
-    }
+    // Always show the tooltip for the clicked skill
+    // Update content
+    mobileTooltipElement.innerHTML = `
+      <div class="max-w-md mx-auto pb-2">
+        <strong class="block mb-2 text-lg">${skill.name}</strong>
+        <p>${skill.description}</p>
+      </div>
+    `;
+    
+    // Show the tooltip
+    mobileTooltipElement.style.display = 'block';
+    const backdrop = document.getElementById('skill-tooltip-backdrop');
+    if (backdrop) backdrop.style.display = 'block';
+    
+    // Set this as the active skill
+    activeSkillName = skill.name;
   };
 
   const handleDesktopClick = (e: React.MouseEvent) => {
