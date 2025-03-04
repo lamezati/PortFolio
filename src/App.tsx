@@ -6,7 +6,6 @@ import Projects from './components/Projects';
 import Skills from './components/Skills';
 import Education from './components/Education';
 import Contact from './components/Contact';
-import Debug from './components/Debug';
 
 function App() {
   return (
@@ -25,7 +24,6 @@ function App() {
           <p>© {new Date().getFullYear()} Leonel Audrey Mezatio. All rights reserved.</p>
         </div>
       </footer>
-      <Debug />
     </div>
   );
 }
